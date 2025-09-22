@@ -8,6 +8,7 @@ const port = process.env.PORT;
 app.use(express.json());
 
 app.get('/tasks', taskController.getRetrieveTasks);
+app.get('/tasks/:id', taskController.getRetrieveTask);
 app.post('/tasks', taskController.postAddTask);
 app.put('/tasks/:id', taskController.putUpdateTask);
 app.delete('/tasks/:id', taskController.deleteTask);

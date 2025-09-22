@@ -1,15 +1,29 @@
 const {PrismaClient} = require("../generated/prisma");
 const prisma = new PrismaClient();
+const taskStatus = require("../constants/task.constants");
 
 exports.getRetrieveTasks = async (req, res) => {
     const tasks = await prisma.task.findMany();
     res.json(tasks);
 }
 
+exports.getRetrieveTask = async (req, res) => {
+    const id = req.params.id;
+    try{
+        const task = await prisma.task.findUnique({
+                where: {Id: parseInt(id)}
+            }
+        );
+        res.json(task);
+    }catch (error){
+        res.status(400).send({error: error.message})
+    }
+}
+
 exports.postAddTask = async (req, res) => {
     const { TaskDescription } = req.body;
     const task = await prisma.task.create({
-        data: { TaskDescription }
+        data: { TaskDescription: TaskDescription }
     });
     res.status(201).json(task);
 }

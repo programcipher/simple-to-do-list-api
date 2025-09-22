@@ -17,5 +17,6 @@ datasource db {
 model Task {
   Id          Int @id @default(autoincrement())
   TaskDescription        String @db.VarChar(255)
+  TaskStatus  String @db.VarChar(200)
   CreatedAt   DateTime @default(now())
 }
