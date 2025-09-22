@@ -27,7 +27,7 @@ exports.postAddTask = async (req, res) => {
             TaskStatus: TaskStatus
         }
     });
-    res.status(201).json(task);
+    res.status(200).json(task);
 }
 
 exports.putUpdateTask = async (req, res) => {
@@ -41,7 +41,7 @@ exports.putUpdateTask = async (req, res) => {
                     TaskStatus: TaskStatus
                 }
         })
-        res.json(updateUser);
+        res.status(200).json(updateUser);
     }catch (error){
         res.status(400).json({error: error.message});
     }
