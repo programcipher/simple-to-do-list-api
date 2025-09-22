@@ -37,6 +37,15 @@ app.put('/tasks/:id', async (req, res) => {
         res.status(400).json({error: error.message});
     }
 })
+app.delete('/tasks/:id', async (req, res) => {
+    const {id} = req.params;
+    try{
+        const deleteUser = await prisma.task.delete({where: {Id: parseInt(id)}});
+        res.json(deleteUser);
+    }catch (error){
+        res.status(400).json({error: error.message});
+    }
+})
 
 
 app.listen(port, () => {
