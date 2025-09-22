@@ -23,6 +23,20 @@ app.post('/tasks', async (req, res) => {
     res.status(201).json(task);
 });
 
+app.put('/tasks/:id', async (req, res) => {
+    const{id} = req.params;
+    const { TaskDescription } = req.body;
+
+    try {
+        const updateUser = await prisma.task.update({
+            where: {Id: parseInt(id)},
+            data: {TaskDescription: TaskDescription}
+        })
+        res.json(updateUser);
+    }catch (error){
+        res.status(400).json({error: error.message});
+    }
+})
 
 
 app.listen(port, () => {
