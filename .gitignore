@@ -58,7 +58,7 @@ web_modules/
 
 # Optional REPL history
 .node_repl_history
-
+prisma/migrations
 # Output of 'npm pack'
 *.tgz
 
@@ -93,7 +93,7 @@ dist
 
 # vuepress v2.x temp and cache directory
 .temp
-.cache
+
 
 # Sveltekit cache directory
 .svelte-kit/
