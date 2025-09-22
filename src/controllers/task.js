@@ -21,21 +21,25 @@ exports.getRetrieveTask = async (req, res) => {
 }
 
 exports.postAddTask = async (req, res) => {
-    const { TaskDescription } = req.body;
+    const { TaskDescription,TaskStatus } = req.body;
     const task = await prisma.task.create({
-        data: { TaskDescription: TaskDescription }
+        data: { TaskDescription: TaskDescription,
+            TaskStatus: TaskStatus
+        }
     });
     res.status(201).json(task);
 }
 
 exports.putUpdateTask = async (req, res) => {
     const{id} = req.params;
-    const { TaskDescription } = req.body;
+    const { TaskDescription,TaskStatus } = req.body;
 
     try {
         const updateUser = await prisma.task.update({
             where: {Id: parseInt(id)},
-            data: {TaskDescription: TaskDescription}
+            data: { TaskDescription: TaskDescription,
+                    TaskStatus: TaskStatus
+                }
         })
         res.json(updateUser);
     }catch (error){
